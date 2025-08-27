@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Costa Fabrica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      color: white;
+    }
+
+    /* Hero Section */
+    #home {
+      background: url('cf1_upscaled_1_11zon.png') no-repeat center center/cover;
+      height: 100vh;
+      position: relative;
+    }
+
+    /* Navbar */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background: rgba(0, 0, 0, 0.4);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      padding: 8px 12px;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      background: #fff;
+      color: black;
+      border-radius: 5px;
+    }
+
+    /* Form Box */
+    .form-box {
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 8px;
+      width: 300px;
+    }
+
+    .form-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-bottom: 2px solid white;
+      background: transparent;
+      color: white;
+      font-size: 14px;
+    }
+
+    .form-box button {
+      width: 100%;
+      padding: 12px;
+      background: black;
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .form-box button:hover {
+      background: white;
+      color: black;
+    }
+
+    /* About Section */
+    #about {
+      background: #fff;
+      color: black;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    #about h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      margin-bottom: 50px;
+    }
+
+    .about-grid {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .about-item {
+      text-align: center;
+      padding: 20px;
+      transition: 0.3s;
+    }
+
+    .about-item img {
+      width: 80px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .about-item:hover {
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+      border-radius: 10px;
+    }
+
+    /* Amenities Section */
+    #amenities {
+      background: #fff;
+      color: black;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    #amenities h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    #amenities h3 {
+      font-size: 18px;
+      margin-bottom: 40px;
+      font-weight: normal;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .amenities-grid li {
+      list-style: none;
+      font-size: 16px;
+      margin: 5px 0;
+    }
+
+    .amenities-grid li::before {
+      content: "✔ ";
+      color: black;
+      font-weight: bold;
+    }
+
+    /* Map Section */
+    #map {
+      background: #fff;
+      color: black;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    #map h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .map-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    iframe {
+      width: 100%;
+      height: 450px;
+      border: 0;
+      border-radius: 10px;
+    }
+
+    .map-details {
+      margin-top: 20px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* Photo Gallery */
+    #gallery {
+      background: #fff;
+      color: black;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    #gallery h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+    }
+        /* Contact Us Section */
+    #contact {
+      background: url('cf1_upscaled_1_11zon.png') no-repeat center center/cover;
+      color: white;
+      text-align: center;
+      padding: 120px 20px;
+      position: relative;
+    }
+
+    #contact h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    .contact-form-box {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .contact-form-box input,
+    .contact-form-box textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      background: white;
+      color: black;
+      font-size: 14px;
+    }
+
+    .contact-form-box textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-form-box button {
+      width: 100%;
+      padding: 14px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .contact-form-box button:hover {
+      background: white;
+      color: black;
+    }
+    
+    .proprietor-wrapper {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: 50px auto 120px; /* ⬅ bigger bottom margin */
+  max-width: 900px;
+  justify-content: flex-start;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Costa Fabrica</div>
+    <nav>
+      <ul>
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#amenities">AMENITIES</a></li>
+        <li><a href="#map">MAP</a></li>
+        <li><a href="#gallery">GALLERY</a></li>
+        <li><a href="#">VIDEO</a></li>
+        <li><a href="#testimonials">TESTIMONIALS</a></li>
+        <li><a href="#contact">CONTACT US</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<!-- Hero / Home Section -->
+<section id="home">
+  <div class="form-box" style="color: #fff;">
+    <input type="date" placeholder="Prospective Date" onfocus="this.showPicker()">
+    <input type="text" placeholder="Full Name">
+    <input type="email" placeholder="Email Address">
+    <input type="tel" placeholder="Phone Number">
+    <button>Enquire Now</button>
+  </div>
+</section>
+
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>The Open Air Experience</h2>
+    <div class="about-grid">
+      <div class="about-item">
+        <img src="cfw.jpg" alt="Weddings">
+        <p>Weddings</p>
+      </div>
+      <div class="about-item">
+        <img src="cfdc.jpg" alt="Day Celebrations">
+        <p>Day Celebrations</p>
+      </div>
+      <div class="about-item">
+        <img src="cfevents.jpg" alt="Events">
+        <p>Events</p>
+      </div>
+      <div class="about-item">
+        <img src="cfp.jpg" alt="Pool Parties">
+        <p>Pool Parties</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Amenities Section -->
+  <section id="amenities">
+    <h2>AMENITIES</h2>
+    <h3>Complete List of Amenities and Features</h3>
+    <ul class="amenities-grid">
+      <li>Parking Space</li>
+      <li>Pool Bar</li>
+      <li>Ceremony Space</li>
+      <li>Reception Tables</li>
+      <li>Catering Area</li>
+      <li>BBQ Station</li>
+      <li>Bar Services</li>
+      <li>Chiavari Chairs</li>
+      <li>Vendor Recommendation</li>
+      <li>Dance Floor</li>
+      <li>Outdoor Amenities</li>
+      <li>Cake Table</li>
+      <li>Gen Set</li>
+      <li>Buffet House</li>
+    </ul>
+  </section>
+
+  <!-- Map Section -->
+  <section id="map">
+    <h2>Map & Directions</h2>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61576.32622927076!2d73.92632972545195!3d15.293929131168598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbfb11426d91fad%3A0x5c02d7691e9c5f12!2sCosta%20Fabrica%20-%20Event%20Management%20Company%20Goa!5e0!3m2!1sen!2sin!4v1756290651555!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <p><strong>Costa Fabrica - Event Management Company Goa</strong></p>
+        <p>Shop No G-12 Lima Residency, Near Jawaharlal Nehru Stadium, Fatorda, Madgaon, Goa 403602</p>
+        <p>Phone: <a href="tel:09921411668">+91 9921411668</a></p>
+        <p>Or Whatsapp: <a href="https://wa.link/uw5t9l"><button style="color:blue">Click here</button></a></p>
+        <p><a href="https://g.co/kgs/ugjCMQd" target="_blank">View on Google Maps</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery -->
+  <section id="gallery">
+    <h2>Photo Gallery</h2>
+    <div class="gallery-grid">
+      <img src="ok2.jpg" alt="Event 1">
+      <img src="ok3.png" alt="Event 2">
+      <img src="ok4.png" alt="Event 3">
+      <img src="ok5.png" alt="Event 4">
+      <img src="ok7.png" alt="Event 5">
+      <img src="ok8.png" alt="Event 6">
+      <img src="ok9.jpeg" alt="Event 7">
+      <img src=ok10.jpg" alt="Event 8">
+    </div>
+  </section>
+
+   <!-- Testimonials Section -->
+  <section id="testimonials" style="background:#fff; color:black; text-align:center; padding:100px 20px;">
+    <h2 style="font-family: 'Playfair Display', serif; font-size:32px; margin-bottom:50px;">TESTIMONIALS</h2>
+    
+    <div style="display:flex; justify-content:center; gap:30px; flex-wrap:wrap; max-width:1000px; margin:0 auto;">
+      <!-- Testimonial 1 -->
+      <div style="flex:1; min-width:300px; border:2px solid #555; padding:20px; border-radius:5px; position:relative; text-align:center;">
+        <h3 style="margin-bottom:10px;">Revis</h3>
+        <p style="color:#f5b301; font-size:20px;">★★★★★</p>
+        <p style="margin-top:15px; font-size:15px; line-height:1.6;">
+          A fantastic wedding and party organizer! I was able to execute the entire event smoothly, with everything carried out systematically and on time. 
+        Truly impressed and grateful for the excellent service provided.
+        </p>
+        <div style="position:absolute; top:0; right:0; background:#555; color:#fff; padding:10px 15px; border-bottom-left-radius:50%;">❝❞</div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div style="flex:1; min-width:300px; border:2px solid #555; padding:20px; border-radius:5px; position:relative; text-align:center;">
+        <h3 style="margin-bottom:10px;">Vinay n.h</h3>
+        <p style="color:#f5b301; font-size:20px;">★★★★★</p>
+        <p style="margin-top:15px; font-size:15px; line-height:1.6;">
+         I recently rented chairs, tables, and other items from my friend for an election day event, and I must say the service was excellent. 
+         Everything was well-organized and delivered on time, which made the whole event run smoothly. The furniture was in great condition, the arrangements were systematic, and we had a wonderful experience overall. 
+         What I appreciated most was the quick pickup after the event and the very reasonable, cost-effective pricing. 
+         Highly recommended for anyone looking for reliable rentals of chairs, tables, tablecloths, speakers, and more!
+        </p>
+        <div style="position:absolute; top:0; right:0; background:#555; color:#fff; padding:10px 15px; border-bottom-left-radius:50%;">❝❞</div>
+      </div>
+    </div>
+
+<!-- Proprietor and Office Hours -->
+<div style="display:flex; justify-content:center; align-items:flex-start; gap:50px; flex-wrap:wrap; max-width:1000px; margin:70px auto 0;">
+
+<!-- Wrapper for Proprietor + Office Hours -->
+
+    <div class="proprietor-wrapper">
+  <!-- Proprietor + Office Hours -->
+</div>
+
+
+  <!-- Proprietor -->
+  <div style="flex:1; min-width:100px; display:flex; align-items:flex-start; gap:2px;">
+    <!-- Image -->
+    <img src="yul.png" alt="Proprietor" style="width:100px;">
+
+    <!-- Text Details -->
+    <div style="font-family:'Times New Roman', serif; text-align:left;">
+      <h3 style="margin:0; font-variant:small-caps;">Proprietor</h3>
+      <pre style="margin:5px 0;font-family: 'Times New Roman', Times, serif;">Yul S. F. Da Costa</pre>
+      <pre style="margin:5px 0;font-family: 'Times New Roman', Times, serif;">Call: 9921411668</pre>
+      <pre style="margin:5px 0;font-family: 'Times New Roman', Times, serif;">Chat:<a href="https://wa.link/g9fpkc"> 9921411668</a></pre>
+    </div>
+  </div>
+
+  <!-- Office Hours -->
+  <div style="flex:1; min-width:300px; text-align:left; font-family:'Times New Roman', serif;">
+    <h3 style="margin:0; font-variant:small-caps;">Office Hours</h3>
+    <p style="margin:5px 0;">Monday - Saturday: 10:00 am - 6:00 pm</p>
+    <p style="margin:5px 0;">Sunday: Closed</p>
+    <p style="margin-top:10px;">Call on 9921411668 for site<br>visit and enquiries</p>
+  </div>
+
+</div>
+
+
+</div>
+
+<!-- Contact Us Section -->
+<section id="contact">
+  <h2>Check Availability</h2>
+  <div class="contact-form-box">
+    <form action="https://formspree.io/f/mldwdrnq" method="POST">
+      <input type="date" name="date" placeholder="Prospective Date" required>
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+      <textarea name="message" placeholder="Leave us a Message"></textarea>
+      <button type="submit">Enquire Now</button>
+    </form>
+  </div>
+</section>
+
+
+
+</body>
+</html>
